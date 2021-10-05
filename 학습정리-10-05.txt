@@ -126,7 +126,7 @@ class SCE {
 		result = ((num1 += 10) < 0) && ((num2 += 10) > 0); false && true
     		System.out.println("result = " + result);
    		 System.out.println("num1 = " + num1);
-    		System.out.println("num2 = " + num2 + '\\n'); 
+    		System.out.println("num2 = " + num2); 
 	
    		result = ((num1 += 10) > 0) || ((num2 += 10) > 0);
     		System.out.println("result = " + result);
@@ -146,6 +146,7 @@ result = true
 num5 = 20
 num6 = 0
 
+// *****비교(관계)연산자는 첫조건에 결과가 결정되어지면 뒤에 조건은 실행이 안된다. *************
 
 
 11.아래를 프로그래밍 하시오.
