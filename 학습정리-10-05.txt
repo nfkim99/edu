@@ -1,0 +1,177 @@
+1. 리터럴이란?
+	- 리터럴 상수가 올라갈 시 반드시 자료형이 정해진다. 
+	- 정수는 자료형이 정해지지 않은 상태에서 메모리에 올라갈 시 디폴트로 4바이트(int)를 무조건 잡는다. = 이유: jvm은 32비트
+	- jvm은 32비트. jvm은 정수 1을 메모리에 와도 무조건 4바이트를 디폴트로 잡음
+	- 4바이트 범위(21억)가 넘어갈 시 뒤에 L을 붙여줘야 한다.
+
+	ex) System.out.println(3147483647 + 3147483647)
+	컴파일시 Interger 에러 
+
+
+	ex) System.out.println(3147483647L + 3147483647L)
+	int 4바이트 범위(21억)가 넘어갈 시 뒤에 L을 붙여준다.
+
+	실수형 상수(리터럴)
+	실수형은 기본적으로 디폴트 double로 잡고있음
+	그러므로 float형으로 표현하려면 f 또는 F로 뒤에 붙여줌.
+
+2. 아래의 내용이 에러가 나는 이유와 수정 방법은?
+System.out.println(3147483647 + 3147483648); //에러남
+
+	이유: 4바이트범위(21억)가 넘어가서 에러남
+		형변환을 하여 자료형을 바꿔줘야 한다.
+
+	수정방법: System.out.println(3147483647 + 3147483648L);
+	// int + long = long 결과값을 가지므로  더큰 범위의 long 형변환해줘야한다.
+
+
+3. 자동 형변환과 명시적 형변환에 대하여 설명하시오.
+
+	자동형변환
+		- 자동 형변환은 내부적으로 형을 일치시킨다.
+
+		int num1 =100;
+ 		long num2 = 3100000000L;
+
+ 		System.out.println(num1 + num2); // int + long = 내부적으로 형을 일치시킴
+ 		// int 를 long으로 자동 형변환
+
+		long + float = float 형으로 자동변형!
+
+		///중요/// 
+		int범위 이하에서는 int로 형변환 시킨다
+
+
+	명시적 형 변환(강제로)
+
+		- 자동 형 변환 규칙에 부합하지는 않지만, 형 변환이 필요한 상황이면 명시적 형변환을 진행
+		- 강제형변환을 할 때에는 조심해야한다.
+		- 에러의 80%는 형변환때문에 발생할 수 있다.
+
+
+
+***********************중요한문제임***********************
+
+4.아래의 에러가 나는 이유를 설명하고 수정 하시오. (형 변환으로 설명하기)
+
+int a = 3;
+int b = 4;
+	
+double result = a / b;
+
+System.out.println(result);
+
+
+
+	- int / int 연산결과값은 무조건 결과값은 int형이 나온다. 0.75가 아닌 정수 0이 출력된다.
+	  즉, result에 대입하기 전에 int끼리의 연산으로 결과값을 잡는다.
+	  0.75를 출력하기 위해선
+	  명시적 형변환을 하여
+
+	  double result = a / (double)b; 
+	  // 이와같이 (double)를 붙여 double 명시적형변환을 시켜 int / double가 되어 결과값 0.75가 출력된다.
+
+	  System.out.println(result);
+
+
+
+5. 이스케이프 시퀀스의 종류를 나열하고 기능을 설명하시오.
+	'\b'  	: 백스페이스 문자
+	'\t'  	: 탭 문자
+	'\\'	: 백슬래시 문자
+	'\' '	: 작은따옴표 문자
+	'\" '	: 큰따옴표 문자
+	'\n'	: 개 행 문자
+	'\r'	: 캐리지 리턴(carriage return) 문자
+
+	화면산의 어떠한 상황 또는 상태를 표현하기 위해 약속된 문자.
+
+
+
+6. 아래의 출력 결과를 확인하고, 130이 나오는 이유를 설명
+System.out.println('A');  
+System.out.println('A' + 'A'); 
+
+	문자 + 문자 (int이하는 무조건 int 자료형으로 바꾼다.)
+
+	그래서 int형 자료형이 되어 + 연산해서 130이 출력된다.
+
+
+
+7. 결합 방향과 우선순위에 대하여 설명하시오.
+
+	- 각 연산기호에는 결합 방향과 우선순위가 있다.
+
+
+
+8. "1초과 100미만인가?"를 코딩으로 표현하면?
+
+	(num1 > 1) && (num1 < 100);
+
+
+
+9. "2의 배수 또는 3의 배수?" 를 코딩으로 표현 하면?
+
+	(num1 % 2 == 0) || (num2 % 3 == 0);
+
+
+
+10. 아래의 프린트 결과를 예측해 보고, 코딩 후 결과를 확인 하시오.
+class SCE {
+	public static void main(String[] args) {
+		int num1 = 0;
+		int num2 = 0;
+		boolean result;    
+
+		result = ((num1 += 10) < 0) && ((num2 += 10) > 0); false && true
+    		System.out.println("result = " + result);
+   		 System.out.println("num1 = " + num1);
+    		System.out.println("num2 = " + num2 + '\\n'); 
+	
+   		result = ((num1 += 10) > 0) || ((num2 += 10) > 0);
+    		System.out.println("result = " + result);
+   		System.out.println("num1 = " + num1);
+    		System.out.println("num2 = " + num2);
+	}
+}
+
+
+
+결과: 
+result = false
+num5 = 10
+num6 = 0
+
+result = true
+num5 = 20
+num6 = 0
+
+
+
+11.아래를 프로그래밍 하시오.
+국어 : 50
+영어 : 70
+수학 : 95
+
+총점과 평균을 구하시오.
+-단 평균은 소숫점 까지 나오도록 하시오
+
+public class GradeMain {
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		int kor = 50; //국어 : 50
+		int eng = 70; //영어 : 70
+		int meth = 95; // 수학 : 95
+		
+		int sum = kor + eng + meth;
+		double avg = (double)sum / 3;
+		//double avg2 = sum / 3.0; 이렇게 해도 된다.
+		
+		System.out.println("총점: " + sum);
+		System.out.println("평균: " + avg);
+		//System.out.println("평균: " + avg2);
+
+	}
+
+}
