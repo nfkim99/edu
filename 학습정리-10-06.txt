@@ -1,0 +1,170 @@
+1.  아래가 에러가 나는 이유를 설명하고, 수정 하시오.
+short num = 1;
+short num = -num;
+
+수정 
+num = (short) -num;
+
+
+
+2. 전위 증가 연산자와 후위 증가 연산자의 차이는?
+	- 전위 증가 연산자는 연산을 먼저 한 뒤 출력
+	- 후위 증가 연산자는 출력을 한 뒤에 연산
+
+3. 아래의 비트 연산자 4가지를 설명하시오.
+& : and 비트연산
+	: 비트 2개가 일치하면 1
+
+| : or 비트연산  
+	: 비트 하나라도 1 이있으면 1
+
+^ : xor 비트연산
+	: 비트 똑같으면 0,
+	: 비트가 안똑같으면 1
+
+~ : ! (not) 연산
+	: 1 -> 0
+	: 0 -> 1
+	: 반대가 된다. (모든비트를 반전시켜 결과반환)
+
+
+
+4. 아래의 쉬프트 연산자에 대하여 설명하시오.
+<<
+ : 2칸 앞으로
+
+>>
+: 2칸 뒤로
+
+5. 아래의 출력값을 예측하시오.
+class AssignSteResult {
+	public static void main(String[] args) {
+		int num1 = 10, num2 = 20, num3 = 30;
+		num1 = num2 = num3;    
+
+		/*
+      = 연산자는 결합 방향이 오른쪽에서 왼쪽으로 진행된다.  ->
+      따라서 위의 문장은 다음과 같다. 
+      num1 = (num2 = num3);        
+    */
+    
+    System.out.println(num1);	
+    System.out.println(num2);
+    System.out.println(num3);
+	}
+}
+
+30
+30
+30
+
+
+
+6.아래의 출력값을 예측하시오.
+class AddNum {
+	public static void main(String[] args) {
+		int result = 3 + 6;
+		System.out.println("3 + 6 = " + result);  
+  
+		result += 9;
+    System.out.println("3 + 6 + 9 = " + result);
+    
+    result += 12;
+    System.out.println("3 + 6 + 9 + 12 = " + result);
+	}
+}
+
+3 + 6 = 9
+3 + 6 + 9 = 18
+3 + 6 + 9 + 12 = 30
+
+8.  조건문의 3가지 종류를 나열하고 설명하시오.
+
+if
+	- 어떠한 조건을 주어 true, false 결과값을 반환
+else
+	- if 조건의 만족이 안되는 결과(false) 영역을 반환
+else if
+	- if 조건의 만족이 안되는 다른 조건을 주는 영역을 반환
+
+ 아래의 프로그램을 짜시오.
+ 국어:80 수학:80 영어:60 총점과 평균을 출력하고, 
+ 평균에 따른 수우미양가를 출력 하시오.
+
+
+public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		int kor = 80; //국어 : 80
+		int eng = 60; //영어 : 60
+		int math = 80; // 수학 : 80
+		
+		int sum = kor + eng + math;
+		double avg = (double)sum / 3;
+		
+		System.out.println("총점: " + sum);
+		System.out.println("평균: " + avg);
+		
+		if(avg >= 90) {
+			System.out.println("수");
+		}else if(avg >= 80) {
+			System.out.println("우");
+		} else if(avg >= 70) {
+			System.out.println("미");
+		} else if(avg >= 60) {
+			System.out.println("양");
+		} else{
+			System.out.println("가");
+		}
+
+
+
+
+9. int 변수 3개 선언 
+임의 값 집어 넣음
+
+그중 3개의 값중 최대값을 출력 
+90 100 60
+
+출력:
+최대값은 100 입니다.
+
+
+		// if else
+		int num2 = 60;
+		int num3 = 100;
+		int num4 = 90;
+		
+		if(num3 > num2 && num3 > num4) {
+			System.out.println("최대값은 " + num3 + "입니다.");
+		} else if(num2 > num3 && num2 > num4) {
+			System.out.println("최대값은 " + num2 + "입니다.");
+		} else if(num4 > num2 && num4 > num3) {
+			System.out.println("최대값은 " + num4 + "입니다.");
+		}
+
+
+		// 삼항연산자
+		int num5 = 60;
+		int num6 = 100;
+		int num7 = 90;
+		int max;
+		
+		max = (num5 > num6) ? (num5 > num7 ? num5 : num7) : (num6 > num7 ? num6 : num7);
+		
+		System.out.println(max);
+
+
+10. int 변수 선언 후 임의로 값을 넣음.
+해당 값이 짝수 이면 "짝수 입니다" 출력
+해당 값이 홀수 이면 "홀수 입니다" 출력
+
+
+		int num1 = 4;
+		
+		if(num1 % 2 ==0) {
+			System.out.println("짝수 입니다.");
+		} else {
+			System.out.println("홀수 입니다.");
+		}
+
