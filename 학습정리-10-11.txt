@@ -36,12 +36,12 @@ starPrint2(5)
 	}
 
 	public static void starPrint2(int num1) {
-		for (int i = 1; i <= 5; i++) {
+		for (int i = 1; i <= num1; i++) {
 			for(int x = 1; x <i; x++) {
 				System.out.print(" ");
 			}
 			
-			for(int j = i; j <=5; j++) {
+			for(int j = i; j <= num1; j++) {
 				System.out.print("*");
 			}
 			System.out.println("");
