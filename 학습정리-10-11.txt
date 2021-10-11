@@ -1,0 +1,254 @@
+1. 함수는 어떻게 알아 볼수있는가?
+	- 함수는 앞 에 이름뒤에 ( ) { } 있으면 함수,
+
+2. 함수 호출 하는 법은?
+ex) 이런식으로 정의된 함수를 호출한다.
+	starPrint(5);
+	starPrint(6);
+	mountinPrint(5);
+
+	hiEveryone(10); // 함수 호출
+	hiEveryone(31);
+
+3. 함수 만드는 법은?
+	// 함수정의
+	public static void hiEveryone(int age) { // void ~ 에서부터 함수임. 메소드()안엔 변수가 온다. (int age) 파라미터라 함.
+		System.out.println("좋은 아침입니다.");
+		System.out.println("제 나이는 " + age + "입니다.");
+	}
+
+4. 리턴 타입 void 는 어떠한 경우에 쓰는가?
+	- return 값이 없을 경우
+	- 반환값이 없을 경우
+5. 아래를 함수로 만드시오.
+
+starPrint2(5) 
+
+출력
+*****
+ ****
+  ***
+   **
+    *
+
+	public static void main(String[] args) {
+	starPrint2(5);
+	}
+
+	public static void starPrint2(int num1) {
+		for (int i = 1; i <= 5; i++) {
+			for(int x = 1; x <i; x++) {
+				System.out.print(" ");
+			}
+			
+			for(int j = i; j <=5; j++) {
+				System.out.print("*");
+			}
+			System.out.println("");
+		}
+	}
+
+5. 아래를 함수로 만드시오.
+
+starPrint3(5) 
+
+출력
+   
+    *   
+   ***
+  *****
+ *******
+*********
+
+	public static void main(String[] args) {
+	mountinPrint(5);
+	}
+	
+	public static void starPrint3(int num1) {
+		for (int i = 1; i <= num1; i++) {
+			for(int j = i; j <=4; j++) {
+				System.out.print(" ");
+			}
+			for(int x = 1; x <=i; x++) {
+				System.out.print("*");
+			}
+			for(int x = 1; x <i; x++) {
+				System.out.print("*");
+			}
+		
+			System.out.println("");
+		}
+	}
+
+
+
+6.아래의 함수를 만드시오. 		
+
+char grade;
+double avg = 80;
+
+grade = getGrade(avg);
+
+// 우 입니다.
+System.out.println(grade + " 입니다.");
+
+
+	public static void main(String[] args) {
+		
+		char grade;
+		double avg = 80;
+	
+		grade = getGrade(avg);
+		
+
+		System.out.println(grade + "입니다.");
+		
+
+	}
+
+	public static char getGrade(double avg) {
+		char grade = '가';
+		
+		if(avg >= 90) {
+			grade = '수';
+		} else if(avg >= 80) {
+			grade = '우';
+		} else if(avg >= 70) {
+			grade = '미';
+		}  else if(avg >= 60) {
+			grade = '양';
+		}  else {
+			grade = '가';
+		}
+		return grade;
+
+	}
+
+7.아래의 함수를 만드시오. 
+
+int sum = getHap(1,100);
+//5050
+System.out.println(sum);
+
+	public static void main(String[] args) {
+		int sum = getHap(1,100);
+		System.out.println(sum);
+	}
+
+	public static int getHap(int start, int end) {
+		int sum = 0;
+		
+		for (int i = start; i <= end; i++) {
+			sum += i; // sum = sum + i; 1+2+3+4+5+6+7+ ....+100
+		}
+		return sum;
+	}
+
+
+8.아래의 함수를 만드시오. 
+
+
+int count = get57(1,100);
+//count 는 1부터 100 까지의 숫자중 5의 배수 이자 7의 배수인 수의 갯수
+System.out.println(count );
+
+	public static void main(String[] args) {
+		int sum = get57(1,100);
+	}
+
+	public static int get57(int start, int end) {
+		int count = 0;
+		
+		for (int i = start; i <= end; i++) {
+			if(i % 5 ==0 && i % 7 ==0) {
+				System.out.println("5와 7의 배수는 = " + i);
+				count++;
+			}
+			
+		}
+		System.out.println("5와 7의 배수의 갯수는 = " + count + "개");
+		return count;
+	}
+
+	
+
+
+9.아래의 함수를 만드시오. 
+
+printGuGudan(3)// 3단 출력
+printGuGudan(4)// 4단 출력
+
+
+		public static void main(String[] args) {
+			printGuGudan(3);// 3단 출력
+			printGuGudan(4);// 4단 출력
+		}
+
+		public static void printGuGudan(int dan) {
+		for (int i = dan; i <= dan; i++) {
+			for (int j = 1; j < 10; j++)
+				System.out.println(i + " x " + j + " = " + i * j);
+			}
+		}
+
+
+10.아래의 함수를 만드시오. 
+
+getRecArea(3,5) //삼각형 넓이
+getRecCirlce(5) //원넓이
+getTriangleArea(4 , 5) //삼각형 넓이
+
+	public static void main(String[] args) {
+		getRecArea(3,5) //삼각형 넓이
+		getRecCirlce(5) //원넓이
+		getTriangleArea(4 , 5) //삼각형 넓이
+	}
+
+	
+
+11. 함수로 만들면 좋은점은?
+-같은 작업을(중복) 하지 않기 위해
+-기능이 2번 이상 중복되면 반드시 함수로 만들것.
+
+12.아래의 함수를 만드시오. 
+int month = 4;
+
+getSeason(3)// 봄입니다. 출력
+printGuGudan(12)// 겨울 입니다. 출력
+
+
+
+		public static int getSeason(int month) {
+		int season = 0;
+		
+		switch (month) {
+		case 1,2,3,4:
+			System.out.println("봄입니다.");
+			break;
+		case 5,6,7,8:
+			System.out.println("여름입니다.");
+			break;
+		case 9,10,11,12:
+			System.out.println("겨울입니다.");
+			break;
+
+		default:
+			break;
+		}
+		return season;
+		
+	}
+
+	public static int printGuGudan(int month) {
+		int dal = 0;
+		
+		if(month == 12) {
+			System.out.println("겨울입니다.");
+		}else {
+			System.out.println(month + "달 입니다.");
+		}
+		return dal;
+		
+	  
+	}
+
