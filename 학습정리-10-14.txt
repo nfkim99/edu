@@ -1,0 +1,226 @@
+1. set classpath 에 대하여 설명하시오.
+	- 자바 가상머신의 클래스 탐색 경로
+	- set classpath=.;c:\PackageStudy\MyClass
+
+	- . : 현재폴더
+	- . 현재폴더에서 먼저, 찾고 없으면 해당 폴더에 찾는다.
+
+
+2.절대 경로와, 상대경로란?
+	절대경로
+	- .;c:\PackageStudy\MyClass
+	- 루트 디렉토리(최상위 디렉토리)를 시작으로 지정한 '절대 경로'
+	
+	상대경로
+	- .;./MyClass
+	- 현재 디렉토리를 기준으로 지정한 '상대 경로'
+	- 기준 자체가 자기 자신의폴더
+
+
+3.  cd  . 관 cd .. 의 차이는?
+
+	cd . : 현재 폴더 이동
+	cd .. : 하위 폴더 이동
+
+4.package 에 대하여 설명해 보시오.
+	- 공간에서의 충돌, 접근방법에서의 충돌
+	- 동일 이름의 클래스 파일을 같은 위치에 둘 수 없음.
+	- 인스턴스 생성 방법에서 두 클래스에 차이가 없다.
+	- package는 이러한 공간적, 접근적 충돌을 해결하기 위한 선언이다.
+		- 서로 다른 패키지의 두 클래스는 인스턴스 생성 시 사용하는 이름이 다르다.
+		- 서로 다른 패키지의 두 클래스 파일은 저장되는 위치가 다르다.
+
+
+5.정보은닉에 대하여 설명하여 보시오.
+	- main 함수에서 다이렉트로 값을 집어넣게 되었을 경우, -값을 넣을수가 있는데 
+	  함수를 통해서 넣게되면 조건문을 주어  -값을 넣을수없게 한번 걸러내는 처리를 할 수가 있다.
+
+	- 함부로 다이렉트로 값을 변경할 수 없게 하는 것.
+	- 멤버 변수는 최대한 숨기는 것
+
+
+6.접근제한자에 대하여 설명하시오.
+
+	- public
+		- 패키지가 다른 곳에서도 접근이 가능하다.
+		- 다른 패키지에서도 즉, 어디서든 객체 생성가능.
+		- 어디에서든 접근 가능.
+
+	- protected
+		- 상속할떄 알려줌..
+
+
+	- default
+		- 아무것도 안붙은 상태.
+		- 같은 패키지 내에서만 접속 가능
+
+	- private
+		- 다른패키지 접근X
+		- 같은 패키지 내 접근 X
+		- 자기자신 클래스 내에만 접근 O
+
+
+	클래스 정의 대상: public, default
+	인스턴스 변수와 메소드 대상 : public, protected, default, private
+
+
+
+
+7. 지역변수에 접근 제한자가 필요없는 이유는?
+	- 지역변수는 지역 범위 안의 값을 초기화 하고 해당 범위 안에서만 메모리가 움직이기 때문이다.
+
+
+
+8. 아래의 클래스를 구현하시오. 
+
+Money money = new Money(-126000);
+money.show();
+
+출력 
+잘못된 입력입니다.
+오만원 0장....
+오만원 0장....
+등등등....
+
+
+
+class Money {
+
+	private int money;
+
+	Money(int money) {
+		setMoney(money);
+	}
+	
+	public void setMoney(int money) {
+		if(money < 0) {
+			this.money = 0;
+			System.out.println("잘못된 입력입니다.");
+			return;
+		}
+		this.money = money;
+	}
+
+	public void show() {
+
+			System.out.println("오만원 : " + money / 50000 + "장");
+			money = money % 50000;
+			System.out.println("만원 : " + money / 10000 + "장");
+			money = money % 10000;
+			System.out.println("오천원 : " + money / 5000 + "장");
+			money = money % 5000;
+			System.out.println("천원 : " + money / 1000 + "장");
+			money = money % 1000;
+			System.out.println("오백원 : " + money / 500 + "장");
+			money = money % 500;
+			System.out.println("백원 : " + money / 100 + "장");
+			money = money % 100;
+	
+	}
+
+}
+
+
+
+9.아래의 클래스를 구현하시오.
+Employee employee = new Employee("홍길동", 19, "서울 뉴욕시", "개발 1팀");
+employee.printInfo();
+}
+
+출력:
+이름 : 홍길동
+나이 : 19
+주소 : 서울 뉴욕시
+부서 : 개발 1팀
+
+
+
+public class Employee {
+	private String name;
+	private int age;
+	private String adress;
+	private String emp;
+
+	public Employee(String name, int age, String adress, String emp) {
+		this.name = name;
+		this.age = age;
+		this.adress = adress;
+		this.emp = emp;
+	}
+
+	public void printinfo() {
+		System.out.println("이름: " + name);
+		System.out.println("나이: " + age);
+		System.out.println("주소: " + adress);
+		System.out.println("부서: " + emp);
+	}
+
+}
+
+10.다음 멤버를 가지고 직사각형을 표현하는 Rectangle 클래스를 작성하라.
+​
+- int 타입의 x, y, width, height 필드 : 사각형을 구성하는 점과 크기 정보
+- x, y, width, height 값을 매개변수로 받아 필드를 초기화하는 생성자
+- int square() : 사각형 넓이 리턴
+- void show() : 사각형의 좌표와 넓이를 화면에 출력
+- boolean contains(Rectangle r) : 매개변수로 받은 r이 현 사각형 안에 있으면 true 리턴 (겹치면 안됨. 완전히 안에 있어야 true)
+- main() 메소드의 코드와 실행 결과는 다음과 같다.
+
+
+
+public static void main(String args[]) {
+		Rectangle r = new Rectangle(2, 2, 8, 7);
+		Rectangle s = new Rectangle(5, 5, 6, 6);
+		Rectangle t = new Rectangle(1, 1, 10, 10);
+		
+		r.show();
+		System.out.println("의 면적은 "+s.square());
+		if(t.contains(r)) System.out.println("t는 r을 포함합니다.");
+		if(t.contains(s)) System.out.println("t는 s를 포함합니다.");
+	}
+
+
+출력:
+(2,2)에서 크기가 8x7인 사각형
+s의 면적은 36
+t는 r을 포함합니다.
+
+
+
+
+
+
+public class Rectangle {
+	
+	private int x;
+	private int y;
+	private int width;
+	private int height;
+	
+	Rectangle(int x, int y, int width, int height) {
+		this.x = x;
+		this.y = y;
+		this.width = width;
+		this.height = height;
+	}
+	
+	public int square() {
+		int result = width * height; // 사각형 넓이
+		return result;
+	}
+	
+	void show() {
+		System.out.println("(" + x +"," + y + ")" + "에서 크기가 " + width +
+				"x" + height + "인 사각형");
+	}
+	
+	boolean contains(Rectangle r) {
+		if((r.x > this.x) && (this.x+this.width) > (r.x+r.width)){
+			return true;
+		}// (this.x<r.x) && (this.x+this.width)>(r.x+r.width)
+		return false;
+		
+	}
+
+}
+
