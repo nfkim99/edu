@@ -174,7 +174,7 @@ public static void main(String args[]) {
 		Rectangle t = new Rectangle(1, 1, 10, 10);
 		
 		r.show();
-		System.out.println("의 면적은 "+s.square());
+		System.out.println("s의 면적은 "+s.square());
 		if(t.contains(r)) System.out.println("t는 r을 포함합니다.");
 		if(t.contains(s)) System.out.println("t는 s를 포함합니다.");
 	}
@@ -214,8 +214,8 @@ public class Rectangle {
 				"x" + height + "인 사각형");
 	}
 	
-	boolean contains(Rectangle r) {
-		if((r.x > this.x) && (this.x+this.width) > (r.x+r.width)){
+	boolean contains(Rectangle r) {						//   ---------------     r.x + r.width 가 아래 사각형(바깥쪽 사각형)의 안에 있어야한다. 
+		if((r.x > this.x) && (this.x+this.width) > (r.x+r.width)){	// --------------------- 비교식.	    < this.x + this.width
 			return true;
 		}// (this.x<r.x) && (this.x+this.width)>(r.x+r.width)
 		return false;
