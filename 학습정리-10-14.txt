@@ -214,8 +214,9 @@ public class Rectangle {
 				"x" + height + "인 사각형");
 	}
 	
-	boolean contains(Rectangle r) {						//   ---------------     r.x + r.width 가 아래 사각형(바깥쪽 사각형)의 안에 있어야한다. 
-		if((r.x > this.x) && (this.x + this.width) > (r.x + r.width)){	// --------------------- 비교식.	    < this.x + this.width
+	public boolean contains(Rectangle r) {				       //   ---------------     r.x + r.width 가 아래 사각형(바깥쪽 사각형)의 안에 있어야한다. 
+		if((r.x > this.x) && (this.x + this.width) > (r.x + r.width)   // --------------------- 비교식.	   < this.x + this.width
+				&& (r.y > this.y) && (this.y + this.width) > (r.y + r.width)){  // 세로 비교식 y도 똑같이 해줌. 
 			return true;
 		}// (this.x<r.x) && (this.x+this.width)>(r.x+r.width)
 		return false;
