@@ -1,0 +1,258 @@
+1. Object 클래스란?
+	- 최상위 부모 클래스
+	- 모든 클래스는 Object 부모 클래스를 상속받고 있다.
+
+
+2. 아래의 소스코드에 대하여 아래와 같이 출력되는 이유는?
+출력
+A@28a418fc
+==============
+class A{
+}
+
+public class Test {
+	public static void main(String[] args) {
+		A a = new A();
+		System.out.println(a); // String s = String.valueOf(x); -> s가 주소 뿌림
+	}
+}
+
+
+ - 객체를 바로 println() 출력함수에 넣을 경우 내부적으로 toString이 호출되게 되어있다.
+ - 내부적으로 최상위 부모 클래스인 Object 클래스에서 toString이 호출된다.
+ - 모든 클래스는 내부적으로 Object 클래스를 상속받는다.
+ - 최상위 부모클래스인 Object 클래스안을 보면 아래와 같이 호출된다.
+
+    public String toString() {
+        return getClass().getName() + "@" + Integer.toHexString(hashCode());
+    }
+
+
+3. class이름 및 함수에서 final의 의미는?
+
+   final 클래스
+	- 상속할수 없는 클래스
+
+   final 함수
+	- 오버라이딩 할 수 없는 함수
+
+
+
+4.아래의 Main돌아 가도록 프로그래밍 하시오.
+
+interface Printable { // MS가 정의하고 제공한 인터페이스
+	public void print(String doc);
+}
+
+	//SPrinterDriver 와 LPrinterDriver를 만드시오
+	public static void main(String[] args) {
+		String myDoc = "This is a report about...";
+
+		// 삼성 프린터로 출력
+		Printable prn = new SPrinterDriver();
+		prn.print(myDoc);
+		System.out.println();
+
+		// LG 프린터로 출력
+		prn = new LPrinterDriver();
+		prn.print(myDoc);
+	}
+
+/*
+출력: 
+From Samsung printer
+This is a report about ...
+From LG printer
+This is a report about ...
+*/
+
+=============================================
+
+interface Printable {
+	public abstract void print(String doc);
+}
+
+//.class
+class SPrinterDriver implements Printable {
+	@Override
+	public void print(String doc) {
+		System.out.println("From Samsung printer");
+		System.out.println(doc);
+	}
+}
+
+//.class
+class LPrinterDriver implements Printable {
+	@Override
+	public void print(String doc) {
+		System.out.println("From LG printer");
+		System.out.println(doc);
+	}
+}
+
+
+
+5. @Override 에 대하여 설명하시오.
+	- 상위 클래스의 메소드를 오버라이딩 하는 것이 목적! 이라는 선언.
+	- 오버라이딩을 하는 형태가 아니면 컴파일러가 오류 메시지 전달.
+
+6. interface 에 대하여 설명해 보시오.
+	- 인터페이스 안에는 public으로 선언된 상수가 들어갈수 있다.
+	- 인터페이스 안에는 함수 앞에 abstract를 붙여야 한다.
+
+	abstract가 붙게 되면 body 내용이 못온다 = 함수 선언만 가능
+
+
+	// 추상 메소드, 추상 함수, abstract (함수 선언만 가능) = 
+	// 바디 실제 구현 부분이 없음
+	// public abstract 는 생략 가능
+	// 없으면 컴파일러가 붙여줌
+	// abstract = 자손이 구현하라
+
+
+7.interface 안에 올 수 있는 것은 두가지를 말해 보시오?	
+	- public으로 선언된 상수
+	- abstract
+
+8. abstract 키워드란?
+
+	abstract가 붙게 되면 body 내용이 못온다 = 함수 선언만 가능
+
+	// 추상 메소드, 추상 함수, abstract (함수 선언만 가능) = 
+	// 바디 실제 구현 부분이 없음
+	// public abstract 는 생략 가능
+	// 없으면 컴파일러가 붙여줌
+	// abstract = 자손이 구현하라
+
+9.아래의 결과가 나오도록 프로그래밍 하시오.
+Object obj = new Circle(10);
+System.out.println(obj);
+
+//출력: 넓이는 314.134 입니다. (예시)
+
+
+
+class Circle{
+	private double r;
+
+	public Circle(double r) {
+		this.r = r;
+		
+	}
+	
+	public double getArea() {
+		double result = r * r* Math.PI;
+		return result;
+	}
+	
+	@Override
+	public String toString() {
+		return "넓이는" + getArea() + "입니다.";
+	}
+	
+	
+}
+
+public class Test1 {
+
+	public static void main(String[] args) {
+		
+		Object obj = new Circle(10);
+		System.out.println(obj);
+	}
+}
+
+10. 아래의 프로그래밍을 하시오.
+
+아래의 인터페이스에 맞추어(상속하여) 아래를 프로그래밍 하시오.
+
+Circle, Rectangle , Triangle
+
+
+interface AreaGetable{
+double getArea();
+}
+
+
+main(){
+
+AreaGetable area = new Circle(4);
+sysout(area.getArea())
+
+area = new Rectangle(4,5);
+sysout(area.getArea())
+
+area = new Triangle(4,5);
+sysout(area.getArea())
+}
+
+
+=======================================
+
+
+
+interface AreaGetable{
+	double getArea();
+}
+
+class Circle implements AreaGetable {
+	private double r;
+	
+	Circle(double r) {
+		this.r = r;
+	}
+	
+	@Override
+	public double getArea() {
+		return r * r* Math.PI;
+	}	
+}
+
+class Rectangle implements AreaGetable {
+	private double width,height;
+	
+	Rectangle(double width, double height) {
+		this.width = width;
+		this.height = height;
+	}
+
+	@Override
+	public double getArea() {
+		return width * height;
+	}	
+}
+
+class Triangle implements AreaGetable {
+	private double width,height;
+	
+	Triangle(double width, double height) {
+		this.width = width;
+		this.height = height;
+	}
+	
+	
+	@Override
+	public double getArea() {
+		return width * height / 2.0;
+	}	
+}
+
+
+
+
+public class Test2 {
+
+	public static void main(String[] args) {
+
+		AreaGetable area = new Circle(4);
+		System.out.println(area.getArea());
+		
+		area = new Rectangle(4,5);
+		System.out.println(area.getArea());
+		
+		area = new Triangle(4,5);
+		System.out.println(area.getArea());
+	
+	}
+}
+
