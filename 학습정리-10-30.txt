@@ -1,0 +1,108 @@
+1.Wrapper class란?
+	- 각각의 데이터 타입을 감싸고 있는 클래스이다.
+	- 파이썬 부터 기본자료형(데이터타입)이 모두 클래스(참조형)으로 되어있다.
+	- 즉, wrapper 클래스로 Integer를 사용한다.
+	- 데이터타입 8가지를 클래스로 감싸놓은 클래스
+
+2. auto unboxing 이란?
+
+	오토 박싱
+	Integer iObj = 10; // Integer iObj = new Integer(10);
+
+
+
+	오토 언박싱
+	int num1 = iObj; // iObj.setValue;
+
+
+	변수선언후 객체를 대입할때 기본적으론 안되지만
+
+	컴파일러가 자동적으로 객체함수를 내부적으로 해주는것을  
+
+	auto unboxing 이라 한다.
+
+
+
+3.BigInteger 클래스에 대하여 설명하시오. 
+
+
+	- 정수형 double 타입의  클래스이다.
+
+- 클래스 Person은 이름을 저장하는 필드 구성
+- 클래스 Person은 상위 클래스 Object의 메소드 equals()를 오버라이딩하여 이름이 같으면 true를 반환하는 메소드 구현
+- 다음과 같은 소스로 클래스 Person을 점검
+
+Person p1 = new Person("홍길동");
+System.out.println(p1.equals(new Person("홍길동")));
+System.out.println(p1.equals(new Person("최명태")));
+
+결과 
+true
+flase
+
+
+
+class Person {
+	private String name;
+	
+	Person(String name) {
+		this.name = name;
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if(obj instanceof Person) {
+			if(this.name == ((Person)obj).name)
+				return true;
+		}
+		return false;
+	}
+}
+
+
+
+ 4. 다음 조건을 만족하는 클래스 String의 객체 이용 프로그램을 작성하여 
+메소드 equals()와 연산자 == 의 차이를 비교 설명하시오.
+
+String s1 = new String("java");
+String s2 = new String("java");
+String s3 = s2;
+
+System.out.println(s1 == s2);
+System.out.println(s1.equals(s2));
+System.out.println(s2 == s3);
+System.out.println(s2.equals(s3));
+
+
+
+	1. System.out.println(s1 == s2);
+		- ==은 주소열을 비교한다.
+		- s1의 메모리 주소와 s2의 주소를 비교한다.
+		- 서로 메모리에 올라간 주소가 다르므로 결과값 false가 나온다.
+
+	2. System.out.println(s1.equals(s2));
+		- object를 내부적으로 상속받아 object의 equals함수를 호출한다.
+		- String에서의 equals()함수는 내부적으로 문자열 비교를 위해 오버라이딩 되어있다.
+		- 결과값 true가 나온다.
+
+	3. System.out.println(s2 == s3);
+		- 변수 s3는 s2를 대입하여 초기화 하였으며, s2의 객체 메모리주소가 대입된다.
+		- == 주소값 비교 결과 : true가 된다.
+
+	4. System.out.println(s2.equals(s3));
+		- 오버라이딩 String equals() 함수에 의해 문자열 비교 
+		- 결과값 true가 된다.
+
+
+5.아래를 정리하시오.
+ - 프로토콜
+	: 네트워크 상에서 약속한 통신규약 (Http, FTP, SMTP, POP, DHCP)
+ -DNS
+	: IP 주소를 인간이 쉽게 외우도록 맵핑한 문자열
+ -포트 번호
+	: IP주소가 컴퓨터를 식별할 수 있게 해준다면, 
+	  Port번호는 해당컴퓨터의 구동되고 있는 프로그램을 구분할 수 있는 번호
+
+
+
+6. 지네릭에 관하여 예습 하시오.
