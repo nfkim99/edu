@@ -1,0 +1,92 @@
+BigDecimal 클래스
+	- 실수 래퍼 클래스
+
+
+Math.PI 에서 PI는 static이다.
+
+
+
+정렬을 위해 사용하는 인터페이스 Comparable
+
+그냥 Comparable을 구현해서 끝나는게 아님
+
+Arrays.sort(ar); // 객체를 받아 정렬하고싶으면 Comparable 받아줘야하는거임
+
+통해서 정렬을 함
+
+sort() 함수가 compareTo를 호출하고있다.
+
+
+@Override
+	public int compareTo(Object o) {
+		Person p = (Person)o; 
+		return  p.age - this.age; // 음수,양수,0만 리턴해주면 되어 자기자신을 기준 - 오름차순, 상대방을 기준 - 내림차순
+	}
+
+
+데이타
+입력,출력,정렬,검색
+
+
+binarySearch
+	- 정렬되어있는 트리구조로 검색
+
+===================================================================
+
+HTML 코드에서의 주석은
+
+Ctrl + ?
+
+<p> : 단락 구분 태그
+<br /> : 행바꿈 태그
+<b>: 볼드 글자 굻기
+<a href = ""> : href 속성에다가 웹사이트주소
+<i> : 이탤릭체
+<sup>: subscript: 절반의 폰트 를 위에 주며 설명?
+<sub>: 아래에 절반의 폰트를 줌
+<ins> : 밑줄
+<del> : 줄을 그어줌
+
+
+
+
+
+
+자바와 html(mark up language) 마크업 언어의 차이점
+- html언어는 컴파일 과정이 없다.
+- 전적으로 웹브라우저(크롬,익스플로러,파폭,사파리 등등)가 해석 해서 뿌린다.
+
+
+리스트 태그 - ul, li, ol
+
+ul - 언오더리스트,  주로 메뉴 리스트 뽑을떄 사용
+
+ol - 오더리스트, 1.2.3.4. 리스트
+
+
+target="_blank"> : 새로운 창으로 url 이동.
+target="_self"> : 자기 창으로 url 이동.
+
+
+<ol type="i"> : 이탤릭체 로 리스트 뽑음
+
+<ol start="5"> : 숫자5부터 리스트 시작됨
+
+
+
+비주얼코드 : 자동줄완성기능 
+컨트롤+쉬프트+b
+
+
+
+table 태그 - tr,td
+<tr>
+  <td></td>
+</tr>
+
+<td colspan="2"> 2개 칼럼을 씀
+
+<td rowspan="4"> : 4인 이유는 tr갯수! 모든tr태그를 품어야하기 떄문!
+
+
+
