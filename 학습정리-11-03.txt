@@ -1,0 +1,240 @@
+1.Generic 이전의 코드의 문제 상황들을 예시로 설명하시오.
+
+Box aBox2 = new Box();
+        
+        aBox2.set("Apple");
+        
+        Apple ap2 = (Apple)aBox.get();
+        
+        System.out.println(ap2);
+
+
+
+위와 같이 new Box(); 객체 생성한 aBox2를
+
+aBox2안에 객체가 아닌!!
+
+ "Apple" String 문자열을 세팅함. ---------1. 문제
+
+Apple ap2 = (Apple)aBox2.get(); -----------2. 형변환이 문제없이 되는 점.
+
+System.out.println(ap2);	-----------3. 실시간으로 처리를 한후에 에러가 잡히는 점
+
+위와같이 비행기 떨어지는 코드이다..
+
+
+2. 아래의 결과가 나오도록 프로그래밍 하시오.
+class DDBoxDemo {
+    public static void main(String[] args) {
+        DBox<String, Integer> box1 = new DBox<>();
+        box1.set("Apple", 25);
+
+        DBox<String, Integer> box2 = new DBox<>();
+        box2.set("Orange", 33);
+        
+        DDBox<DBox<String, Integer>, DBox<String, Integer>> ddbox = new DDBox<>();
+        ddbox.set(box1, box2);
+
+        System.out.println(ddbox);
+    }
+}
+
+/*
+==================
+Apple & 25
+Orange & 33
+*/
+
+
+
+
+
+
+
+
+class DBox2<L, R> {
+	private L left;
+	private R right;
+
+	public void set(L o, R r) {
+		left = o;
+		right = r;
+	}
+
+	@Override
+	public String toString() {
+		return left + " & " + right;
+	}
+
+}
+
+class DDBox<L, R> {
+	private L left;
+	private R right;
+	
+	public void set(L o, R r) {
+		left = o;
+		right = r;
+	}
+	
+	@Override
+	public String toString() {
+		return left + "\n" + right;
+	}
+}
+
+
+
+3.아래와 같이 결과 값이 나오도록 만드시오.
+   public static void main(String[] args) {
+        DBox<String, Integer> box = new DBox<String, Integer>();
+        box.set("Apple", 25);
+        System.out.println(box);
+        
+        DBox<String, String> box2 = new DBox<String,String>();
+        box2.set("Apple", "Orange");
+        System.out.println(box2);
+
+Apple & 25
+Apple & Orange
+
+
+
+class DBox<L, R> {
+	private L left;
+	private R right;
+
+	public void set(L o, R r) {
+		left = o;
+		right = r;
+	}
+
+	@Override
+	public String toString() {
+		return left + " & " + right;
+	}
+
+}
+
+4. 업다운 게임을 짜시오.
+
+1. 랜덤으로 숫자를 생성 - 컴퓨터가 가짐
+2.게임을 시작 유저가 숫자를 입력
+3. 10번의 기회를 주어 맞으면 맞았다고 출력 10번의 기회가 지나면 게임 종료.
+
+출력의 예
+========================================
+
+**************
+1. 게임 시작
+2. 게임 종료
+**************
+1
+게임시작
+>>>
+50
+down
+>>>
+45
+down
+>>>
+30
+down
+>>>
+20
+down
+>>>
+10
+up
+>>>
+15
+up
+>>>
+17
+맞았다
+**************
+1. 게임 시작
+2. 게임 종료
+**************
+
+
+
+
+
+
+
+
+
+import java.util.Scanner;
+
+class Player {
+	private int num;
+
+	public void printNum(int num) {
+
+	}
+
+	public int printNum() { // return타입이랑은 상관없다.
+		return 0;
+	}
+
+	public Player(int num) {
+		this.num = num;
+
+	}
+
+	public Player() {
+		this.num = (int) (Math.random() * 100 + 1); // 1 부터 3까지 랜덤함수 생성한다
+		
+	}
+	
+
+
+	public void result(Player player) { // 비교 후 출력하는 부분
+		if (this.num == player.num) { // String 문자열 비교는 equals 사용!!
+			System.out.println("맞았다");
+			return;
+		} else if (this.num < player.num) {
+			System.out.println("down");
+		} else {
+			System.out.println("up");
+		}
+	}
+
+}
+
+public class UpDownGame {
+
+	public static void main(String[] args) {
+
+		Scanner sc = new Scanner(System.in);
+
+		System.out.println("************");
+		System.out.println("1. 게임시작");
+		System.out.println("2. 게임종료");
+		System.out.println("************");
+		Player com = new Player(); // 컴퓨터
+		
+		while (true) {
+
+			int start = sc.nextInt();
+			if (start == 1) {
+				System.out.println("게임시작 \n" + ">>>");
+			} else if(start == 2) {
+				System.out.println("게임종료");
+				break;
+			}
+
+			for (int i = 0; i < 10; i++) {
+				int num = sc.nextInt();
+
+				Player user = new Player(num); // 사람.
+
+				com.result(user);
+			}
+			System.out.println("10번의 기회가 끝났습니다.");
+			break;
+		}
+
+	}
+}
