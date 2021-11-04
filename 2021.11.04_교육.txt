@@ -1,0 +1,128 @@
+제네릭 클래스의 타입 인자 제한하기
+
+
+class Integer extends Number
+
+
+class DBox<T extends Number> {
+
+T extends Number는 넘버를 상속받은 거만 올수 가 있다.
+즉, Integer나 double
+
+Number를 상속 받는 클래스만 타입으로 할수가있다.
+
+제한하는 이유는 해당 상속받은 클래스의 함수를 써먹겠다는 이유
+
+제네릭에서는 extends로 인터페이스도 상속받음
+
+
+
+
+제네릭 메소드
+
+public static <T> Box<T> makeBox(T o) {
+
+}
+
+Box<T>는 그냥 리턴타입
+
+
+
+<T>는 그저 받아 내는 객체 데이터 타입일 뿐
+
+
+
+
+와일드 카드
+
+<?> : 모든 타입을 받아낼수 있다.
+
+와일드 카드 기반 메소드 정의가 간결하므로 우선시 해야한다고 권고
+
+
+
+와일드 카드의 상한과 하한의 제한
+
+일단 이해하자...
+
+
+
+
+
+
+
+
+<form action="#" method="get">
+
+action="#"  안에 있는 주소로 보낸다.
+
+method="get" get과 post가 있다.
+
+
+
+
+radio 에서는 name = ""같은것을 묶는다.(그룹)
+
+
+
+
+checkbox와 radio의 차이점
+
+radio는 name="name" 이름이 같은것을 묶고,
+
+checkbox는 이름이 같아도 체크 여러개를 할수가 있다.
+
+
+<select multiple = "multiple"> : 셀렉터
+
+multiple : 다수를 선택
+
+submit : 전송, 제출
+
+
+
+
+
+
+
+HTML에서 중요한 태그
+
+div 태그, span 태그
+
+
+div와 span의 차이점!!
+****범위영역 차이!
+
+<div> : 블록 태그
+: 한줄 전체를 차지!
+
+<span> : 인라인 태그
+: 안에있는 내용범위만 차지!
+
+
+
+
+<div> + 의미 = 시멘틱 태그
+
+
+<header>
+	- 헤더
+<nav>
+	- 메뉴
+<section>
+	- 본문
+<footer>
+	- 꼬리말
+
+
+
+css3는 html <head>안에 쓴다.
+<style>
+	div {
+                background: #5009c2;
+            }
+</style>
+
+css3안에 적용할 것을 선택자라한다.
+
+div 선택자라고 한다.
