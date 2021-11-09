@@ -1,0 +1,446 @@
+1. 블록 태그와 인라인 태그에 대하여 설명하시오.
+
+	인라인 태그
+		- 자신의 내용과 앞뒤 태그의 내용을 같은 라인에 출력하는 태그
+		- 구성 요소 역할을 한다.(출력 내용 역할)
+		- 자기자신의 영역만 잡음. ex) 한 글자, 한 버튼, 한 이미지 등등...
+		- 대표적인 태그 : <span>
+
+	블록 태그
+		- 자신의 내용만으로 한 라인을 독점해서 출력하는 태그(*)
+		- 영역(구조)을 만들때 사용 > 컨테이너 역할 > 레이아웃 구성(틀 만들기)
+		- 한문단을 영역으로 잡음!
+		- 대표적인 태그 : <div>
+
+2. 블록 태그와 인라인 태그의 종류를 나열 하시오.
+
+인라인 태그 종류
+	- <a>, <br/>, <button>, <img>, 
+	- <input><script>, <select>, <span> 등등이 있다.
+
+블록 태그 종류
+	-  <div>, <audio>, <form>,  <h1>, <h2>, 
+	-  <h3>, <h4>, <h5>, <h6>, <header> 등 이 있다. 
+
+
+3. 선택자 # 과 . 에 대하여 설명하시오.
+
+	선택자 #
+		- 태그안의 id에 해당하는 부분을 css 적용하겟다.
+		- ex) <div id="header"> id = "header"를 가지는 부분을 css적용시킬때
+		 	#header {} 선택자 #을 통해 한다.
+	선택자 . 
+		- 태그안의 속성이 class로 해당하는 부분을 css 적용
+		- ex) <li class="menu1">menu1</li> class="menu1"을 가지는 부분을 
+			class로 속성을 가질경우 class별로 css화 시킬떄 사용한다.
+			.menu1 {} 선택자 .을 통해 css 적용
+
+
+
+4. 아래를 프로그래밍 하시오.
+
+- 원객체 생성
+- ArrayList 에 차례대로 반지름이 1인 원 부터 10인원을 입력.
+- 차례대로 각각의 원 넓이 출력 
+- 10개의 원넓이 합산 하여 출력.
+
+
+
+
+import java.util.ArrayList;
+
+class Circle {
+
+	private double  r;
+
+	public double getR() {
+		return r;
+	}
+
+	public void setR(double r) {
+		this.r = r;
+	}
+
+	public Circle(double r) {
+		this.r = r;
+	}
+	
+	public double getArea() {
+		return r * r* Math.PI;
+	}		
+}
+
+public class CircleArrayListTest {
+
+	public static void main(String[] args) {
+		ArrayList<Circle> cirList = new ArrayList<>();
+		
+		for(int i = 1; i <= 10; i++) {
+			cirList.add(new Circle(i));
+		}
+		
+		for(int i = 0; i < 10; i++) {
+			Circle circle = cirList.get(i); // 제네릭에 의해 형변환 X
+			System.out.println(circle.getArea());
+		}
+		
+		double sum = 0;
+		
+		for (Circle circle : cirList) {
+			System.out.println("반지름 : " + circle.getR() + "넓이는 " + circle.getArea());
+			sum += circle.getArea();
+		}
+		
+		System.out.println("총 넓이는: " + sum);
+	}
+
+}
+
+
+
+
+5. ArrayList 와 LinkedList 의 차이는?
+
+ArrayList 
+	- 배열 기반 자료구조이며, 배열을 이용하여 인스턴스 저장
+LinkedList 
+	- 리스트 기반 자료구조이며, 리스트를 구성하여 인스턴스 저장
+
+
+6. 5명의 별명을 입력 받아 ArrayList에 저장하고 이들 중 별명의 길이가
+제일 긴 별명을 출력하시오. (단, 각 별명의 길이는 모두 다르게 입력한다.)
+
+
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+class NickNameGame {
+	public static final int COUNT = 5;
+	ArrayList<String> nickName;
+	
+	public NickNameGame() {
+		nickName = new ArrayList<>();
+	}
+	
+	// 가장 긴 이름 찾는거
+	public int getMaxName() {
+		int index = 0;
+		int max = 0;
+		
+		String name = null;
+		
+		for ( String str: nickName) {
+			
+			if(max <= str.length()) { // max값 구하는 로직
+				max = str.length();
+				name = str;
+				
+			}
+			
+		
+		}
+		
+		System.out.println("가장긴 별명: " + name);
+		
+		return index;
+	}
+	
+	public ArrayList<String> getNickName() {
+		
+		Scanner sc = new Scanner(System.in);
+		
+		for(int i = 1; i <= COUNT; i++) {
+			System.out.println(i + "번째 사람의 별명을 입력하십시오.");
+			String name = sc.next();
+			
+			if(i > 1) {	// 중복체크
+				for(int j = 0; j < i-1; j++) {
+					if(nickName.get(j).length() == name.length()) { 
+						System.out.println("별명의 길이는 같을 수 없습니다. 다시 입력하세요.");
+						i--;
+						continue;
+					}
+				}
+			}
+			
+			nickName.add(name);
+		}
+		
+		return nickName;
+	}
+}
+
+
+public class NicNameArrayListTest {
+
+	public static void main(String[] args) {
+		NickNameGame game = new NickNameGame();
+		game.getNickName();
+		game.getMaxName();
+		
+	}
+
+}
+
+
+
+
+
+7.Scanner 클래스로 -1이 입력될 때까지 양의 정수를 입력받아 List에 저장하고 
+List를 검색하여 가장 큰 수를 출력하는 프로그램을 작성하라.
+
+정수(-1이 입력될 때까지)>> 10 6 22 6 88 77 -1
+
+가장 큰 수는 88
+
+
+
+
+
+
+
+
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+
+
+class ListMaxValue {
+	private ArrayList<Integer> arrList;
+	private int max;
+	
+	public ArrayList<Integer> getArrList() {
+		
+		try {
+			Scanner sc = new Scanner(System.in);
+			System.out.println("정수(-1이 입력될 때까지)>>");
+			
+			while(true) {
+				int num = sc.nextInt(); // 10 6 22 6 88 77 -1
+				
+				if(num == -1) {
+					break;
+				} else {
+					arrList.add(num);
+				}
+			}
+		} catch (Exception e) {
+			System.out.println("잘못된 입력입니다.");
+			getArrList(); // 재귀-> 다시 시작.
+		}
+		
+		
+		return arrList;
+	}
+
+	public void setArrList(ArrayList<Integer> arrList) {
+		this.arrList = arrList;
+	}
+
+	public int getMax() {
+		
+		max = 0;
+		
+		for (Integer i : arrList) {
+			if(i > max) {
+				max = i;
+			}
+		}
+		return max;
+	}
+
+	public void setMax(int max) {
+		this.max = max;
+	}
+
+	
+	ListMaxValue() {
+		arrList = new ArrayList<Integer>();
+	}
+}
+
+
+public class testArrayListTest7 {
+
+	public static void main(String[] args) {
+		ListMaxValue listMaxvalue = new ListMaxValue();
+		listMaxvalue.getArrList();
+		
+		System.out.println(listMaxvalue.getMax());
+		
+	}
+
+}
+
+
+
+
+
+
+8.Scanner 클래스를 사용하여 6개 학점('A', 'B', 'C', 'D', 'F')을 문자로 입력받아 ArrayList에 저장하고, 
+ArrayList를 검색하여 학점을 점수(A=4.0, B=3.0, C=2.0, D=1.0, F=0)로 변환하여 평균을 출력하는 프로그램을 작성하라.
+
+6개의 학점을 빈 칸으로 분리 입력(A/B/C/D/F) >> A C A B F D
+
+2.3333333333333335
+
+
+
+
+
+
+
+import java.util.ArrayList;
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+
+public class testArrayListTest8 {
+
+	public static void main(String[] args) {
+		final int SCORE_COUT = 6;
+		ArrayList<Character> arrList = new ArrayList<>();
+
+		try {
+			Scanner sc = new Scanner(System.in);
+			System.out.println("6개의 학점을 빈 칸으로 분리 입력(A/B/C/D/F) >> ");
+
+			for (int i = 0; i < SCORE_COUT; i++) {
+				char ch = sc.next().charAt(0); // charAt(0) = 제일 첫글자 '' 한문자만 받아내겟다.
+				
+				switch(ch) {
+	            case 'A','a','B','b','C','c','D','d','F','f':
+	                break;
+	            default:
+	                throw new InputMismatchException(); 
+	        }
+				
+				arrList.add(ch);
+			}
+
+			int sum = 0;
+
+			for (int i = 0; i < arrList.size(); i++) {
+				char ch = arrList.get(i);
+
+				switch (ch) {
+				case 'A', 'a':
+					sum += 4;
+					break;
+
+				case 'B', 'b':
+					sum += 3;
+					break;
+
+				case 'C', 'c':
+					sum += 2;
+					break;
+
+				case 'D', 'd':
+					sum += 1;
+					break;
+
+				case 'F', 'f':
+					sum += 0;
+					break;
+
+				default:
+					System.out.println("잘못된 정수입니다.");
+					throw new InputMismatchException(); 
+				}
+			}
+
+			double avg = (double) sum / arrList.size();
+
+			System.out.println(avg);
+			
+		} catch (Exception e) {
+			System.out.println("잘못된 입력입니다. 처음부터 다시 입력해 주세요.");
+			main(args); // 메인함수를 다시 재귀..메인함수도 재귀할수가 있다.
+		}
+
+	}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+9.하나의 학생 정보를 나타내는 Student 클래스에는 이름, 학과, 학번, 학점 평균을 저장하는 필드가 있다.
+
+(1) 학생마다 Student 객체를 생성하고 4명의 학생 정보를 ArrayList<Student> 컬렉션에 저장한 후에, ArrayList<Student>의 모든 학생(4명) 정보를 출력하고 학생 이름을 입력받아 해당 학생의 학점 평균을 출력하는 프로그램을 작성하라.
+
+학생 이름, 학과, 학번, 학점평균 입력하세요.
+
+>> 황기태, 모바일, 1, 4.1
+
+>> 이재문, 안드로이드, 2, 3.9
+
+>> 김남윤, 웹공학, 3, 3.5
+
+>> 최찬미, 빅데이터, 4, 4.25
+
+----------------------------------
+
+이름: 황기태
+
+학과: 모바일
+
+학번: 1
+
+학점평균: 4.1
+
+----------------------------------
+
+이름: 이재문
+
+학과: 안드로이드
+
+학번: 2
+
+학점평균: 3.9
+
+----------------------------------
+
+이름: 김남윤
+
+학과: 웹공학
+
+학번: 3
+
+학점평균: 3.5
+
+----------------------------------
+
+이름: 최찬미
+
+학과: 빅데이터
+
+학번: 4
+
+학점평균: 4.25
+
+----------------------------------
+
+학생 이름 >> 최찬미
+
+최찬미, 빅데이터, 4, 4.25
+
+학생 이름 >> 이재문
+
+이재문, 안드로이드, 2, 3.9
+
+학생 이름 >> 그만
