@@ -1,0 +1,200 @@
+1. 프로세스와 쓰레드의 차이점은?
+
+프로세스
+	- 메모리에 올라간 실행중인 프로그램
+	- 실행 중인 프로그램은 OS가 관리
+
+쓰레드
+	- 프로세스 내에서 실제 작업을 수행
+	- 모든 프로세스는 하나 이상의 쓰레드를 가진다.
+
+
+2. 쓰레드에서 동기화란 무엇인가?
+
+	- synchronized
+	- 한 번에 하나의 쓰레드만 객체에 접근할 수 있도록 객체에 락(lock)을 걸어서
+   	   데이터의 일관성을 유지하는 것.
+
+
+3.html 에서  display 종류와 속성에 대하여 설명하시오.
+
+display: inline
+	- display: inline 인라인을 하게되면 width,height가 안먹힘
+ 	- 개행 시키지 않음<span>
+
+display: block
+ 	- 대표적인 태그 <div>
+ 	- 개행시켜줌<div>
+
+
+display: inline-block
+
+	- width, height가 먹힌다.
+
+
+
+4.px 과 em 의 차이는? (font)
+
+px
+	- px는 상대단위이다.
+	- pixel, 모니터에 따라서 상대적인 크기를 가짐
+
+em	- 같은 상대단위이나 font-size
+	- 일반적으로 해당 폰트의 대문자 M의 너비를 기준
+
+
+5. inline-block 태그의 종류는?
+
+	- 기본값이 block인 태그들
+	- width, height값을 통해 크기를 지정할수 있음
+	- 별도의 값을 주지않을 경우 width는 한줄 전체를 사용
+
+6. display:none; 과 visibility:hidden;의 차이는?
+
+
+display:none;
+	- display:none은 화면상에서 없는것처럼 영역도 차지하지않고 사라진다.
+
+
+visibility:hidden
+	- visibility:hidden은 출력화면에서 영역을 차지하면서, 사라진다.
+
+
+
+
+7.HashMap<Integer, String> map = new HashMap<>();
+   map.put(45, "Brown");
+   map.put(37, "James");
+   map.put(23, "Martin");
+
+======================================
+위의 Value 값이 다나오도록 for 문 돌리시오.
+
+
+
+package kosmo_Test;
+
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
+
+
+
+public class Test53 {
+
+	public static void main(String[] args) {
+		
+		HashMap<Integer, String> map = new HashMap<>();
+		   map.put(45, "Brown");
+		   map.put(37, "James");
+		   map.put(23, "Martin");
+		   
+		   Set<Integer> ks = map.keySet();
+		   
+		   for (Integer n : ks) {
+			System.out.print(n.toString() + "\t");
+		   }
+		   System.out.println();
+		   
+		   for (Integer n : ks) {
+			System.out.print(map.get(n).toString() + "\t");
+		}
+		
+	}
+}
+
+
+
+
+
+8.로또 번호6개를 출력 -중복없이
+Set 으로 구현 과
+일반 for 문 구현을 따로 하시오.
+
+
+
+set
+===============================================
+public class Test51 {
+
+	public static void main(String[] args) {
+		Set<Integer> set = new HashSet<>();
+
+		while(set.size() != 6) {
+			int num = (int) (Math.random() * 45 + 1);
+			set.add(num);
+		}
+		
+		for (Integer num : set) {
+			System.out.print(num + "\t");
+		}
+		
+		System.out.println();
+		
+	}
+}
+
+for 문
+====================================================
+
+public class Lotto {
+
+	public static void main(String[] args) {
+	
+		int [] lotto = new int[6];
+		
+		for(int i = 0; i < lotto.length; i++) {
+			lotto[i] = (int)(Math.random() * 45 + 1);
+			
+			for(int j=0; j < i; j++) {	// 중복제거
+				if(lotto[i] == lotto[j]) {
+					i--; //
+					break;
+				}
+			}
+			
+		}
+		
+		for(int i = 0; i < lotto.length; i++) {
+			System.out.print(lotto[i] + "\t");
+		}
+
+		
+	}
+		
+}
+
+
+
+9.아래가 돌아 가도록 구현하시오.
+
+    main(){
+        ThreadCount threadCount = new ThreadCount();
+                threadCount.start();
+                
+                String input = JOptionPane.showInputDialog("아무 값이나 입력하세요."); 
+                System.out.println("입력하신 값은 " + input + "입니다.");
+}
+=============================================
+10 9 8 7 6 ... 이 1초마다 실행 되도록 쓰레를 완성하시오.
+
+
+
+
+
+class ThreadCount extends Thread {
+
+	public void run() {
+		for (int i = 10; i > 0; i--) {
+			System.out.println(i);
+			try {
+				Thread.sleep(1000); // 1000 밀리세컨 = 1초 
+				// 1초후에 나를 실행시켜라 - 컨텍트 스위칭 // 번지를 기억해서 함수를 다시 실행하는게 아니라 그번지를 기억한 자리를 다시가서 실행
+			} catch (Exception e) {
+
+			}
+		}
+	}
+}
+
