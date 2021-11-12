@@ -1,0 +1,76 @@
+I/O
+- 단방향
+
+InputStream : new 해서 객체 생성
+OutputStream 
+ - 파일의 연결 시킬려고하는 빨대 (파일의 연결)
+ - read() : 함수를 통해 데이터를 읽음 ㅋㅋ, 1byte씩 읽음, 느림
+
+
+예외처리와 무조건 close() 실행
+I/O의 마지막은 항상 close() 해줘야한다.
+
+close()를 하는 이유
+ - HDD와 연결을 하기 때문에
+ - close()를 통해 연결을 끊어준다.
+
+try catch finally를 쓴다.
+
+
+I/O를 하면서 반듯이 해야하는 예외처리
+ - ChekedException을 던지고 있기 때문에 개발자가 반드시 예외처리를 해줘야한다.
+
+
+
+
+텍스트 읽고 쓰기 - 파일 복사
+
+
+보조 스트림(필터 스트림)
+
+
+
+
+=========================================
+
+
+
+html
+
+position 속성
+
+
+position: fixed 
+ - 뷰포트 기준, 가장 위에있는 최상단 고정! (화면에서 가장 왼쪽 위 자리)
+
+position: absolute
+ - 부모 기준,
+
+position: static 
+ - 기본값
+ - 기본적인 위치(밑으로 떨어지는 블록)
+
+
+position: relative 
+ - 자기자신
+ - static으로 만들었을때(원래자리) 의 영역에서 100px 100px
+
+
+z-index 
+ - 덮어씀
+ - 숫자가 낮은쪽을 덮어씀
+
+
+css상에서 부모를 안정해주면 body가 부모가 되어버린다.
+그래서 css상에서 부모를 position: relative 해줘야 한다.
+
+
+
+float 속성
+position속성과 함께 위치를 설정하기위한 속성
+
+float주면 부모가 못잡는다.
+
+
+bcf영역: 바디영역을 잡아줌
+
