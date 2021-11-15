@@ -1,0 +1,152 @@
+1.채팅 프로그램 구현을 위한 기술적 요소 3가지를 나열하고 채팅 프로그래밍을 구현하시오.
+
+		기술적 요소 
+			- socket, 
+			- thread, 
+			- IO stream
+
+
+
+=======================서버===============================
+
+
+package java_chat;
+
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.util.Scanner;
+
+
+class Receiver extends Thread {
+	
+	Socket socket;
+	DataInputStream in;
+	String name;
+	
+	Receiver(Socket socket) {
+		this.socket = socket;
+		try {
+			System.out.println(in.readUTF());
+		} catch (Exception e) {
+			
+		}
+	}
+}
+
+
+
+
+class Sender extends Thread {
+	
+	Socket socket;
+	DataOutputStream out;
+	String name;
+	
+	Sender(Socket socket) {
+		this.socket = socket;
+		try {
+			out = new DataOutputStream(socket.getOutputStream());
+			name = "["+socket.getInetAddress()+":"+socket.getPort()+"]";
+		} catch (Exception e) {
+			Scanner sc = new Scanner(System.in);
+			
+			while(out != null) {
+				try {
+					out.writeUTF(name + sc.nextLine());
+				} catch (Exception e2) {
+					// TODO: handle exception
+				}
+			}
+		}
+	}
+}
+
+public class chatingServer {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		ServerSocket ServerSocket = null;
+		Socket socket = null;
+		
+		try {
+			
+			ServerSocket = new ServerSocket(7777);
+			
+			socket = ServerSocket.accept(); // 기다리는 소스
+			
+			Sender   sender   = new Sender(socket);
+	        Receiver receiver = new Receiver(socket);
+
+	        sender.start();
+	        receiver.start();
+			
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
+
+}
+
+
+
+
+=======================클라이언트===============================
+
+
+
+package java_chat;
+
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.util.Scanner;
+
+
+public class chatingClient {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		String serverIP = "127.0.0.1";
+		Socket socket = null;
+		
+		try {
+			
+			socket = new Socket(serverIP, 7777);
+			
+			System.out.println("서버에 연결되었습니다.");
+			
+			Sender   sender   = new Sender(socket);
+	        Receiver receiver = new Receiver(socket);
+
+	        sender.start();
+	        receiver.start();
+			
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
+
+}
+
+
+
+
+2.미디어 쿼리란 무엇인가요?
+
+	- 출력 장치의 해상도, 스캔 방식, 인쇄 여부, 디바이스가 세로인지 가로인지에 따라 작업자가 
+	   설정을 할 수 있는데, 어떻게 출력이 되는지에 따라 CSS처리를 하는 것.
+
+
+3.반응형 웹이란 무엇인가요?
+
+	- 반응형웹이란 단 하나의 홈페이지로 PC,스마트폰, 태블릿, 노트북 등 
+	   여러 가지 디바이스의 해상도에 반응하여 각각에 맞는 최적의 화면을 보여주는 홈페이지
+
+
