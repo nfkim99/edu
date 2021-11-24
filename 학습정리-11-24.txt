@@ -1,0 +1,186 @@
+1. 부트스트랩 앨범을 완성을 하시오.
+
+2.쿠키란 무엇인가요?
+	- 연결성 유지를 위한 꼼수
+	- 웹브라우저와의 관계를 유지시키는 수단
+	- 클라이언트에 쿠키를 저장
+	- 4kb 300까지만 저장 가능
+
+3.세션이란 무엇인가요? 
+	- 서버에 저장하기 때문에 보안이 좋고 제한이 없다.
+	- 서버(톰캣)는 접속자의 구분과 연결성 유지를 위해 세션id와 쿠키를 심는다.
+	- 세션은 메모리에 내가 필요한 정보를 올려두고,
+	  어느 페이지를 돌아다녀도 써먹겠다는 의미
+	- 웹브라우저마다 세션ID를 하나씩 준다.
+
+
+4. 아래의 cookie_set.jsp 파일에 대하여
+cookie get 를 클릭하면 모든 쿠키 값을 출력하는 cookie_get.jsp를 만드시오.
+
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<%
+	Cookie cookie = new Cookie("CookieN","CookieV"); //쿠키객체생성
+	cookie.setMaxAge(60*60); //쿠키 시간 설정
+	
+	response.addCookie(cookie);
+%>
+
+	<a href="cookie_get.jsp">cookie get</a>
+
+</body>
+</html>
+
+
+
+=================================================================
+
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<%
+
+	Cookie[] cookies = request.getCookies(); // 쿠키를 가져오는거
+	
+	// 쿠키확인
+	for(int i = 0; i < cookies.length; i++) {
+		String str = cookies[i].getName();
+		System.out.println(cookies[i].getName() + ":" + cookies[i].getValue());
+		
+		if(str.equals("CookieN")) {
+			out.println("cookies[" + i + "] name : " + cookies[i].getName() + "<br>" );
+			out.println("cookies[" + i + "] value : " + cookies[i].getValue() + "<br>" );
+			out.println("======================================<br>");
+		}
+	}
+
+%>
+
+<a href="cookie_del.jsp">cookie del</a>
+
+</body>
+</html>
+
+
+
+
+5.아래의 session_set.jsp 파일에 대하여
+session get 를 클릭하면 모든 세션 값을 출력하는 session_get.jsp를 만드시오.
+
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<%
+	session.setAttribute("sessionName", "sessionValue");
+	session.setAttribute("myNum", 12345);
+%>
+
+	<a href="session_get.jsp">cookie get</a>
+</body>
+</html>
+
+
+===============================================================
+
+<%@page import="java.util.Enumeration"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<%
+
+	Object obj1 = session.getAttribute("sessionName");
+	String sessionName = (String) obj1;
+	out.println(sessionName + "<br>");
+	
+	//=================================================
+			
+	int mynum = (int) session.getAttribute("myNum");
+	out.println(mynum + "<br>");
+	
+	out.println("**********************************<br>");
+	
+	String name;
+	String value;
+	
+	Enumeration enumetation = session.getAttributeNames();
+	
+	while(enumetation.hasMoreElements()) {
+		name = enumetation.nextElement().toString();
+		value = session.getAttribute(name).toString();
+		
+		out.println("name : " + name + "<br>");
+		out.println("value : " + value + "<br>");
+	}
+	
+	out.println("**********************************<br>");
+	
+	String sessionID = session.getId();
+	out.println("sessionID : " + sessionID + "<br>");
+	
+	int sessionInter = session.getMaxInactiveInterval(); // 접속유지시간
+	out.println("sessionInter : " + sessionInter + "<br>");
+	
+	out.println("**********************************<br>");
+	
+	session.removeAttribute("sessionName"); // 세션삭제
+	
+	Enumeration enumetation1 = session.getAttributeNames();
+	
+	while(enumetation1.hasMoreElements()) {
+		name = enumetation1.nextElement().toString();
+		value = session.getAttribute(name).toString();
+		
+		out.println("name : " + name + "<br>");
+		out.println("value : " + value + "<br>");
+	}
+	
+	out.println("**********************************<br>");
+	
+	session.invalidate(); // 세션 전체 삭제
+	
+	if(request.isRequestedSessionIdValid()) {
+		out.println("session valid");
+	} else {
+		out.println("session invalid");
+	}
+	
+%>
+
+<!-- 요청할때 서버가 심어놓은 쿠키도 같이 들어간다.  -->
+<br><a href="session_get.jsp">session get</a> 
+
+
+</body>
+</html>
+
+
+
+6. sessin id 란?
+
+	- 서버(톰캣)는 접속자의 구분과 연결성 유지를 위해 세션id와 쿠키를 심는다.
+	- 웹브라우저마다 세션ID를 하나씩 준다.
