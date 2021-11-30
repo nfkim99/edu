@@ -1,0 +1,138 @@
+https://wikidocs.net/3935
+참조
+
+
+
+SELECT DISTINCT job FROM EMP;
+
+
+
+--별칭 연산자
+-- 사원들의 연봉출력  as 별칭 as는 생략 가능
+select ename, sal * 12 as "연봉" from emp; -- 별칭에서 공백을 주고 싶다면 " "로 하라
+
+SELECT ENAME, SAL * 12 + NVL(COMM, 0) AS annsal FROM EMP; -- NVL(COMM, 0) COMM칼럼에서 값이 NULL인 값을 0으로 바꿔라
+
+--기존의 컬럼내에 문자열을 추가하고자 할 때 사용
+select ename || ' is a' || 'job' "연결정의 예" from emp;
+
+SELECT ENAME || ' is a ' || JOB "연결정의 예" FROM EMP;
+
+
+--함수--
+--DUAL 테이블
+--24 * 30
+SELECT 24 * 30 FROM DUAL; 
+-- 한행을 출력하는 테이블이다.
+-- 산술 연산이나 가상 컬럼 등의 값을 한번만 출력하고 싶을 때 많이 사용한다.
+select sysdate from dual;
+
+--2) 숫자 함수
+select -10, ABS(-10) from dual; --ABS는 절댓값: 양수만 나옴
+SELECT 34.5432, FLOOR(34.5432) FROM DUAL; --FLOOR 소숫점은 버림
+
+--특정 자릿수에서 반올림하는 함수이다.
+--ROUND
+SELECT 34.5678, ROUND(34.5678) FROM DUAL; --반올림
+SELECT 34.5678, ROUND(34.5678,2) FROM DUAL; --2번쨰 수수점까지만 
+SELECT 34.5678, ROUND(34.5678, -1) FROM DUAL; -- 1의자리에서 반올림, 앞으로 한칸
+SELECT 34.5678, ROUND(34.5678, -2) FROM DUAL; -- 다버림, 앞으로 2칸
+
+--TRUNC -- 특정 자릿수에서 그냥 잘라내는 함수
+SELECT TRUNC(34.5678, 2), TRUNC(34.5678, -1), TRUNC(34.5678), TRUNC(34.5678, 0) FROM DUAL;
+
+-- 3%2 = 1 떨거지를 출력하는 함수
+SELECT MOD(27, 2), MOD(27, 5), MOD(27, 7) FROM DUAL;
+
+-- 문자함수 .String
+-- UPPER : 대문자로 출력
+-- LOWER : 소문자로 출력
+SELECT 'Welcome to Oracle' "적용전", UPPER('Welcome to Oracle') "UPPER적용후" FROM DUAL;
+SELECT 'Welcome to Oracle' "적용전", LOWER('Welcome to Oracle') "UPPER적용후" FROM DUAL;
+
+--이니셜만 대문자로 출력
+SELECT 'WELCOME TO ORACLE' "적용전", INITCAP('WELCOME TO ORACLE') "INITCAP적용후" FROM DUAL;
+
+--문자길이를 구하는 함수
+SELECT LENGTH('Oracle'), LENGTH('오라클') FROM DUAL;
+-- 한긇은 기본적으로 3바이트를 잡는다.(오라클 기준)
+SELECT LENGTHB('Oracle'), LENGTHB('오라클') FROM DUAL;
+
+-- 특정 문자의 위치를 구하는 함수이다.
+SELECT INSTR('Welcome To Oracle', 'O') FROM DUAL;
+-- SUBSTR : 대상 문자열이나 컬럼의 자료에서 시작 위치부터 선택 개수만큼의 문자를 추출한다.
+SELECT SUBSTR ('Welcome to Oracle', 4, 3) FROM DUAL;
+-- 사원들의 입사일에서 입사 년도와 입사 달을 출력하는 쿼리문
+SELECT hiredate from emp; --date 타입의 기본 형식 80/12/17
+SELECT ENAME, 19||SUBSTR(HIREDATE, 1, 2)년도, SUBSTR(HIREDATE, 4, 2)달 FROM EMP;
+
+-- 9월에 입사한 사원을 출력하는 쿼리문
+SELECT ename, hiredate from emp where SUBSTR(HIREDATE, 4, 2) = '09';
+SELECT ENAME, 19||SUBSTR(HIREDATE, 1, 2)년도, SUBSTR(HIREDATE, 4, 2)달 FROM EMP WHERE SUBSTR(HIREDATE, 4, 2) = '09';
+
+--
+select RPAD('ORACLE', 20, '#') FROM DUAL;
+select LPAD('ORACLE', 20, '#') FROM DUAL;
+
+--TRIM 공백제거
+SELECT '             ORACLE     ' FROM DUAL;
+SELECT TRIM ('             ORACLE     ') FROM DUAL;
+SELECT TRIM ('a' FROM 'aaaaaaaaaORACLEaaaaaa') FROM DUAL;
+SELECT LTRIM('             ORACLE') FROM DUAL;
+SELECT RTRIM('ORACLE        ') FROM DUAL;
+
+-- 날짜함수
+--DATE(날짜)형에 사용하는 함수이다.
+desc emp;
+
+-- 현재날짜를 출력해주는 함수
+-- sysdate : 시스템에서 현재 날짜를 읽어와서 출력
+select sysdate from dual;
+
+--날짜연산
+SELECT SYSDATE-2 아래꺠, SYSDATE-1 어제, SYSDATE 오늘, SYSDATE+1 내일 FROM DUAL;
+
+-- 각 직원들이 근무한 개월 수를 출력하는 쿼리문
+SELECT ENAME, SYSDATE, HIREDATE, trunc (MONTHS_BETWEEN(SYSDATE, HIREDATE)) 근무개월수 FROM EMP;
+
+-- 특정 개월 수를 더한 날짜를 구하는 함수이다.
+SELECT ENAME, HIREDATE, ADD_MONTHS(HIREDATE, 4) FROM EMP;
+
+-- 오늘을 기준으로 가장 가까운 다음 수요일은 언제인지 알아보는 쿼리문
+SELECT SYSDATE, NEXT_DAY(SYSDATE, '화요일') FROM DUAL;
+
+-- 해당 달의 마지막 날짜를 반환하는 함수이다.
+-- 입사한 달의 마지막 날을 구하는 쿼리문
+SELECT HIREDATE, LAST_DAY(HIREDATE) FROM EMP;
+
+
+-- 현재 날짜를 문자형으로 변환하여 출력하는 쿼리문
+select sysdate, to_char(sysdate, 'YYYY-MM-DD') from dual;
+
+-- 현재 날짜를 문자형으로 변환하여 출력하는 쿼리문
+SELECT HIREDATE, TO_CHAR(HIREDATE, 'YYYY/MM/DD DAY') FROM EMP;
+
+-- 현재 날짜, 시간 출력
+SELECT TO_CHAR(SYSDATE, 'YYYY/MM/DD, HH24:MI:SS') FROM DUAL;
+
+-- 각 지역별 통화 기호를 앞에 붙이고 천 단위마다 콤마를 붙여서 출력하는 쿼리문(예: ￦1,230,000)
+SELECT ENAME, SAL, TO_CHAR(SAL, 'L999,999') FROM EMP;
+
+
+
+-- TO_DATE
+-- 19812020을 DATE 타입으로 바꾸겟다.
+SELECT ENAME, HIREDATE FROM EMP WHERE HIREDATE=TO_DATE(19810220, 'YYYYMMDD');
+
+
+
+
+
+
+
+
+
+
+
+
+

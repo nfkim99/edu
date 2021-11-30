@@ -1,0 +1,73 @@
+sql - 문자형, 날짜형은 ' ' 홀따옴표
+distict - 중복제거
+
+
+집에서 db 오라클 접속 안될경우 말하기
+
+게시판이 CRUD의 가장 대표적인 거
+
+
+lib(라이브러리) = 클래스들의 모임
+
+프레임워크 = 특정한 목적을 위한 클래스들의 모임
+
+API = C언어 시절 class 없을 때, 함수들의 모임
+
+.jar = .zip (압축파일)
+========================================
+
+모듈 하고 패키지도 다 같은 말
+
+
+프레임워크 = API = lib(라이브러리) = .jar = 모듈 = 패키지 = 컴포넌트
+
+========================================
+결론은 용어에 속지 말자.
+
+
+
+----------JDBC 살펴보기-----
+
+
+JDBC(Java Database Connection)
+
+ojdbc6_g => JDBC 드라이버
+
+
+jsp_jdbc 프로젝트 생성 -> lib 폴더 -> ojdbc6_g.jar 집어넣기
+
+
+오라클 jdbc 위치:  C:\oraclexe\app\oracle\product\11.2.0\server\jdbc\lib 폴더에 가서
+
+ojdbc6_g.jar 복사해서 lib 폴더에 집어넣기
+
+
+
+
+
+// jdbc 3종 객체 외우기
+	Connection connect; // java.sql 에서 끌고오기
+	Statement statment; // java.sql 에서 끌고오기
+	ResultSet rs;		// java.sql 에서 끌고오기
+
+
+
+
+오라클 ceo  = 래리 앨리슨
+
+JDBC = 
+인터페이스들을 통해 제조사 들이 구현을 하게되있음.
+인터페이스의 장점 : 강제
+
+MYsql을 사용할 경우 3종 객체만 바꿔주면 됨 
+
+
+20장 커넥션풀
+
+
+
+
+
+
+
+
