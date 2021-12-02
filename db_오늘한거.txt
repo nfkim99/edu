@@ -1,0 +1,38 @@
+db sql_수업
+
+조인의 기본은 카테이션곱이다.(경우의수를 다뽑음)
+
+--사원 정보를 출력할 때, 각 사원이 소속된 부서의 상세 정보를 출력
+select * from emp, dept where emp.deptno = dept.deptno;
+
+-- 이름이 KING인 사람의 부서명을 출력
+SELECT e.ENAME, d.DNAME FROM EMP e, DEPT d WHERE e.DEPTNO = d.DEPTNO AND ENAME = 'KING';
+
+
+
+서브 쿼리
+
+-- 하나의 select문장 내에 포함된 또 하나의 select문장이 있는 쿼리문
+-- 비교 연산자의 오른쪽에 기술해야 하고, 반드시 괄호 안에 넣어야 한다.
+-- 메인 쿼리가 실행되기 이전에 한 번만 실행된다.
+
+
+
+-- 사원들의 평균 급여보다 더 많은 급여를 받는 사원을 검색하는 쿼리문
+select * from emp where sal > (select avg(sal) from emp);
+
+-- scott의 부서명을 알아내는 쿼리문
+select * from dept where deptno = (select deptno from emp where ename = 'SMITH');
+
+단점
+하나의 테이블을 표현을 못한다.
+
+
+
+
+
+
+
+
+
+

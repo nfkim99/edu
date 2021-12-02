@@ -1,0 +1,45 @@
+jsp 4개 scop 영역(메모리)
+
+=============================
+page 영역 -> 해당 페이지만
+request 영역 -> fowarding 까지 유지
+session 영역 -> 시간에 따라
+application 영역 -> 프로젝트 끌날 때 까지
+
+
+스크립틀릿보단
+EL을 더 많이 씀!!
+
+아이디 : ${param.id } <br>
+비밀번호 : ${param.pw }   //param. (페이지 영역을 나타내는 객체)
+
+
+
+JSTL(Jsp standard Tag Library) - 실무에선 이걸 많이씀
+
+구글 -> jstl download 검색 -> 파일 압출풀고 -> lib 폴더안에 있는 2개 -> 이클립스 프로젝트 lib 폴더에 붙여넣기
+-> jsp 파일 생성 후 -> 상단에 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 추가
+
+
+
+<c:set/> 
+	- 변수 생성
+
+<c:remove/> 
+	- 변수삭제 (날리는거)
+
+<c:if> 태그 --%>
+	- 조건문
+	- true,false를 리턴함
+
+<c:choose> 태그
+	- switch문, if문 이랑 비슷
+
+
+1. 리턴값이 있거나
+2. 변수 들어 옴. (메모리에 올라가 있는 놈이 와야함)
+
+
+
+
+
