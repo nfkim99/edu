@@ -1,0 +1,99 @@
+1. db 설계 
+2. 소프트웨어 설계(mvc2모델: new 들어가지않는거) //mvc1: new 들어가는게 모델1
+	게시판 
+	댓글 - 가로 : 인텐트, 세로 : 스탭
+	1. d그룹
+
+컨트롤러 객체에서 커맨드를 생성
+
+
+
+http://localhost:8282/jsp_board/list.do
+
+list.do를 치고 들어오면 요청 -> get방식으로 actionDo를 탄다 
+
+
+DML : 데이터 조작어
+ - 데이터를 조회하거나 데이터 추가, 삭제 등
+DDL : 데이터 정의어
+ - 테이블 구조 자체를 생성, 변경, 삭제
+DCL : 데이터베이스에 접근하고
+
+
+
+CREATE TABLE EMP01 (
+    EMPNO NUMBER(4),
+    ENAME VARCHAR2(20),
+    SAL NUMBER(7, 2)
+);
+
+
+
+
+
+왼쪽 숫자는 전체 자릿수, 오른쪽은 소수점 자릿수
+
+1234.72
+
+char varchar2
+
+
+--기존 테이블에서 일부의 컬럼만 복사하여 테이블을 만드는 쿼리문
+create table emp02 as select * from emp;
+
+
+-- 테이블 삭제
+drop table emp02;
+
+--테이블의 모든 로우를 제거하는 TRUNCATE TABLE
+
+TRUNCATE TABLE EMP03;
+
+-- 테이블명 변경
+RENAME EMP03 TO TEST;
+
+
+
+데이터 딕셔너리
+--데이터베이스 자원을 효율적으로 관리하기 위한 다양한 정보를 저장하는 시스템 테이블이다.
+-- 데이터 딕셔너리 == 시스템 테이블이다.
+
+
+INSERT
+
+테이블에 새로운 로우를 추가할 때 사용하는 SQL문이다
+테이블에 새로운 데이터를 입력하기 위해 사용하는 데이터 조작어이다.
+
+-- INSERT
+ -- 테이블에 새로운 로우를 추가할 때 사용하는 SQL 문이다.
+ 
+ -- 데이터를 뺴고 복사
+ CREATE TABLE DEPT02 AS SELECT * FROM DEPT WHERE 1=0;
+ 
+ SELECT * FROM DEPT02;
+ 
+ 
+ INSERT INTO DEPT02(DEPTNO, DNAME, LOC) VALUES (10, 'ACCOUNT', 'NEW YORK');
+ 
+ --
+ 
+  INSERT INTO DEPT02 VALUES (20, 'Research', 'DALLAS');
+
+UPDATE
+
+테이블에 저장된 데이터를 수정하기 위해서 사용하는 명령문이다.
+기존의 행을 수정하기 위해 사용된다.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
