@@ -1,0 +1,65 @@
+- 공부방법 - 안철수 - 십독(책) - 10번 읽기
+- 유튜브
+- 구글링
+
+
+게시판 프로젝트
+- 화면설계
+	- 게시판을 들어가면 게시판 리스트가 보여진다.
+	- 글쓰기 누르면 -> 글쓰기 작성 페이지 이동
+	- 글작성 완료되면 -> 리스트로 이동
+	- 
+
+
+
+게시판 속성 강좌
+To do list 기법
+=========================
+1. 설계도 외우기 - 2분
+2. 프로젝트 생성 - 1분
+3. 라이브러리 집어 넣기 3개 - 30초
+4. DTO 만들기 - 3분
+- desc mvc_board
+-BDto - edu.kosmo.ex.dto
+5. DAO 만들기  - 5분
+-BDao - edu.kosmo.ex.dao
+- 커넥션풀
+- list()
+- select * from mvc_board order by bgroup desc, bstep asc
+sql 문 정리
+
+6. Command 인터페이스 만들기 - 1분
+ - edu.kosmo.ex.command
+ - request 객체 안에 게시판 넣기
+
+6-1. BListCommand 클래스 만들기 - 3분
+ - edu.kosmo.ex.command
+ - DAO 객체 생성
+ - list() 함수 호출
+ - request 객체 안에 게시판 넣기
+
+7. Servelet 객체 만들기(컨트롤러 객체 만들기) - 5분
+ - *.do 설정
+ - doAction 설정
+ - 명령어 해석
+	String uri = request.getRequestURI();
+	String conPath = request.getContextPath();
+	String com = uri.substring(conPath.length());
+ - 명령해석후 BListCommand 객체 생성
+	if(com.equals("/list.do")) {
+		command = new BListCommand();
+		command.execute(request, response);
+		viewpage = "list.jsp";
+	}
+ - 빠빠라치 객체 설정
+	RequestDispatcher dispatcher = request.getRequestDispatcher(viewpage); // 핵심코드
+	dispatcher.forward(request, response); // -> forwarding 되었기때문에 .do로 들어감
+
+8. list.jsp
+- UTF-8 세팅
+- JSTL 지시자 설정
+- 댓글 re 부분 주의할것!
+
+	
+
+=========================
