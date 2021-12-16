@@ -1,0 +1,25 @@
+메이븐(빌드툴) - pom.xml 라이브러리 관리
+
+
+스프링에선 html 폼 데이터에서 넘기는걸 어떻게 받는지 
+
+
+http://localhost:8282/ex/board/confirm?id=abcd
+get방식으로 넘겨보기(id)
+
+http://localhost:8282/ex/board/confirm?id=abcd&pw=1234
+get방식으로 넘겨보기(id,pw)
+
+http://localhost:8282/ex/board/confirm?id=abcd&pw=1234&addr=seoul
+get방식으로 넘겨보기(id,pw,addr)
+
+
+https://congsong.tistory.com/31 참조
+
+https://projectlombok.org/download  jar 다운주소
+
+롬복 설치하기 -> jar파일 다운 -> sts 실행폴더에 붙여넣기 -> cmd 관리자로 열기->
+
+롬복 이용해서
+
+커맨드객체로 개발함
