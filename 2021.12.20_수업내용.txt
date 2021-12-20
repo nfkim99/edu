@@ -1,0 +1,45 @@
+스프링 순서
+
+빠빠라치 서블릿 -> Handler Mapping -> handler Adapter -> controller -> view resolver -> jsp -> 유저
+
+
+스프링에서의 mvc
+
+// repository = persistance = mapper = dao
+
+
+repository = dao
+service = command
+
+
+절대경로와 상대경로의 차이
+/ex/emp/emp_view?empno=7499
+절대
+ex/emp/emp_view?empno=7499
+상대
+
+
+------자바스크립트------
+
+클로저  **중요**
+  - 외부변수 살아있다. 
+       ex) 리턴을 외부변수를 받아낼수있다. 
+  - 리턴함수
+
+내부함수
+  - 함수안에 함수 들어갈수 있다.
+
+콜백함수
+ - 매개변수로 함수 전달.
+ - 함수안에 함수를 넘긴다.
+
+내장함수
+
+ - alert(), console.log() setTimeout(), clearTimeout() 등등...
+
+
+
+
+
+
+

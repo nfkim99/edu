@@ -1,0 +1,83 @@
+spring todo list
+
+
+게시판 속성 강좌
+To do list 기법
+=========================
+1. 설계도 외우기 - 2분
+2. 프로젝트 생성 - 30초
+
+   new -> spring legacy project -> spring_emp_test 생성
+
+3. 라이브러리 집어 넣기 3개 - 30초
+    pom.xml 복붙
+
+4. DTO 만들기 - 2분
+- desc mvc_board
+-EmpVO (edu.kosmo.ex.vo)
+
+
+5. DAO 만들기  - 8분 10초
+
+-BDao - edu.kosmo.ex.dao
+
+- ******@Repository 꼭 해주기!!!!
+
+- 커넥션풀 : 덜외움!!  - 5분
+
+- ArrayList<EmpVO> List() - 3분
+
+- sql 문 정리  - 10초
+select * from emp
+
+
+6. Service 인터페이스 만들기 - 1분
+ - edu.kosmo.ex.service
+ - EmpService.java (인터페이스)
+
+6-1. EmpServiceList 클래스 만들기 - 4분
+ - edu.kosmo.ex.service
+
+ - ****@Service -> ***빠트리지 말기!!!!
+
+ - @Autowired (EmpDao) - @Autowird로 EmpDao 자동인젝션 ---**덜외움
+
+ - @Override 
+    List<EmpVO> 구현하기
+
+
+7. EmpController 만들기(컨트롤러 객체 만들기) - 5분
+
+ - @Autowired  --- ***@autowired 외워주기
+   EmpService empService; - 1분 
+
+ - @GetMapping("/emp/list") --- @GetMapping ****덜외움
+    public String list(Model model) 구현하기 - 2분
+
+
+8. list.jsp - 5분
+- UTF-8 세팅
+- JSTL 지시자 설정
+- 댓글 re 부분 주의할것!
+
+
+***********EmpServiceList 부분에서 @Service 꼭 해주기!!!****
+
+@Service 빠트려서 안됬었음...
+
+..
+EmpDao에 이것도 빠뜨림..
+
+@Repository
+
+
+
+**********중요********!!!
+
+Service(command) 부분 - @Service
+
+Dao 부분 -  @Repository
+
+빠트리지말것!!!!!!!!!!!!
+
+=========================
