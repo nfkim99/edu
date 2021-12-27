@@ -1,0 +1,33 @@
+리스너 - 이벤트 받는거
+
+1. jsp + service + sql(DB)
+
+=======================
+
+1. mysql - limit 지원 sql문이 상당히 간단하다.
+2. 오라클(11g) - limit X , rownum으로 구현!
+ - "SELECT B.* FROM (SELECT Rownum AS rn, A.* FROM(SELECT * FROM mvc_board ORDER BY bGroup desc, bStep asc) A) B "
+					+ "WHERE rn >=? AND rn <=?";
+
+
+===========================================
+1. 페이징 왜 하는가?
+
+ = 실무에서는 데이터(db)가 1억개 ~ 그이상 일 수ㄱ ㅏ 있다.
+ - 메모리적 측면, 속도측면에서 페이징이 필요하다.
+
+paging = << 1 2 3 4 5 6 7 8 9 >>
+
+
+
+=============js 수업=============
+
+onload() 이벤트: 호출된 웹문서가 모두 완료후 자동으로 실행
+ - 메모리로 다올린 후에 (ex: <body>안의 내용부터 메모리로 올린후에 script 함수 호출)
+
+
+
+DOM : 태그를 동적으로 올린거
+
+DOM 조작: <p> 태그등 만들수 있다.
+

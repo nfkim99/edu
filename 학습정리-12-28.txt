@@ -1,0 +1,25 @@
+1. Bom 이란?
+ - BOM(Browser Object Model, 브라우저 객체 모델)
+ - 웹페이지의 내용을 제외한 브라우저창에 포함된 모든 객체 요소들을 의미
+
+
+2. Dom 이란?
+ - DOM(Document Object Model, 문서 객체 구조)
+ - DOM : 태그를 동적으로 올린거
+ - DOM 조작: <p> 태그등 만들수 있다.
+ - 브라우저들은 사용자가 띄운 웹문서를 그 구성과 내용에 맞게 객체화하여
+   각 요소별(텍스트,버튼,이미지 등) 으로 구조화 한다.
+
+ - document는 window의 document (html문서) 이다.
+
+
+DOM과 BOM의 차이점은,
+
+DOM은 document, 현재 눈에 보이는 웹문서에 대한 제어와 변경을,
+BOM은 window 속성에 속하여 document가 아닌, window를 제어한다.
+
+
+내일 아침 한시간은 타이머 돌리면서 
+페이징 하도록 하겠습니다.
+
+

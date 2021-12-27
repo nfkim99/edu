@@ -1,0 +1,80 @@
+/*   ROWUNM 접근법
+
+   ROWUNM : SQL이 실행된 결과에 넘버링을 해줌..
+   Select 구문에서 ROWUNM이라는 변수를 사용해 해당 데이터가 몇번째로 나오는지 알수 있음.
+   ROWUNM은 테이블에는 존재하지 않고, 테이블에서 가져온 데이터를 이용해서 번호를 매김 
+
+   아래에서 10개만 빼와야 한다.
+   SELECT rownum rn, bid, bname, btitle FROM mvc_board where rownum <=10; 
+
+   아래는 나오지 않는다.
+   그 반드시 이유를 알아야 한다. 이것이 핵심이다.
+   SELECT rownum rn, bid, bname, btitle FROM mvc_board 
+   where rownum > 10 and rownum <=20 ;
+
+   먼저 오라클 쿼리의 순서를 읽혀야 한다
+   1. FROM/WHERE 절이 먼저 처리됩니다.
+   2. ROWNUM이 할당되고 FROM/WHERE 절에서 전달되는 각각의 출력 로우에 대해 증가(increment) 됩니다.
+   3. SELECT가 적용됩니다.
+   4. GROUP BY 조건이 적용됩니다.
+   5. HAVING이 적용됩니다.
+   6. ORDER BY 조건이 적용됩니다.
+
+   이유는 뭐다?
+   rownum은 당연히 1이 할당 될 것이다. 
+   select 하기전 아래가 먼저 실행한다.
+   rownum = 1  > 10 -> 여기서 부터 조건에 맞지 않으므로 아무것도 뿌리지 못한다.
+   한마디로 where 절부터 실행 되므로 여기에서 무효화가 되는 것이다.
+   이러한 이유로 SQL 작성시 ROWNUM 조건은 반드시 1이 포함되어야 한다.
+
+   SELECT rownum rn, bid, bname, btitle 
+   FROM mvc_board 
+   where rownum <=20 ;
+   20 개를 가져온다 실행이 된다.
+
+   20개를 가져오는 데는 성공했다.
+   이제 우리의 목표인 10번 부터 20번 까지 가져와야 한다.
+
+   아래는 공식이다.원리를 이해 하면 된다.
+   SELECT * FROM (
+        SELECT ROWNUM AS RNUM, A.* FROM (
+             {검색쿼리 - 정렬이 필요할 경우 정렬조건 포함}
+       ) A WHERE ROWNUM <= {범위까지}
+   ) WHERE RNUM > {범위부터};
+
+
+            SELECT * FROM (
+                 SELECT ROWNUM AS RNUM, A.* FROM (
+                          SELECT
+                                *
+                            FROM
+                                mvc_board 
+                            order by bGroup desc, bStep asc   
+                ) A WHERE ROWNUM <= #{pageNum} * #{amount}
+            ) WHERE RNUM > (#{pageNum}-1) * #{amount}
+
+
+   begin
+     for i in 1..1000 loop
+      insert into mvc_board (bId, bName, bTitle, bContent, bHit, bGroup, bStep, bIndent) values (mvc_board_seq.nextval, 'test' , '테스트', '테스트', 0, mvc_board_seq.currval, 0, 0);
+     end loop;
+   end;
+
+   commit;
+
+
+
+page 구현시 변수 갯수 : 7개
+
+------------Criteria-----------2개
+int pageNum;   // 페이지 번호
+int amount;     // 한페이지당 몇개의 데이터를 보여줄지
+
+------------PageVO-------- 4개
+int startPage;  // 화면에 보여지는 페이지 시작번호
+int endPage;
+boolean pre, next;
+int total;
+
+
+--------------------총 변수 7개로만 paging 완료
