@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        #cEventAdd {
+           width: 200px; height: 100px;
+           line-height: 100px;
+           text-align: center;
+           font-size: 1.2em;
+           background-color: #f00;
+           color: #fff;
+           font-weight: bolder;
+        }
+        
+        #cEventRem {
+           width: 200px; height: 100px;
+           line-height: 100px;
+           text-align: center;
+           font-size: 1.2em;
+           background-color: #0f0;
+           color: #fff;
+           font-weight: bolder;
+        }
+     </style>
+
+    <script>
+
+        window.onload = () => {
+
+            function addHandler() {
+                console.log("Click!!!")
+            }
+
+            function removeHandler() {
+                console.log("event remove!!!")
+
+                ceA.removeEventListener("click", addHandler); // 리무브 핸들러가 실행되면 add리스너 자체를 지움 / 번호 안올라감
+            }
+
+            let ceA = document.querySelector("#cEventAdd");
+            ceA.addEventListener("click", addHandler); // 콜백함수 : 함수안에 함수를 넣음/ addHandler() 주면 안됨 / 4바이트 주소만 넘기는거 addHandler 
+
+
+            let ceR = document.querySelector("#cEventRem");
+            ceR.addEventListener("click", removeHandler);
+
+        };
+
+    </script>
+</head>
+<body>
+    <div id="cEventAdd">Click Event</div> 
+    <div id="cEventRem">Click Event</div> 
+</body>
+</html>
