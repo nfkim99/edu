@@ -1,0 +1,24 @@
+소셜로그인 참조
+https://gimmesome.tistory.com/182
+
+결제모듈 참조
+https://puzzle-puzzle.tistory.com/entry/import-%EC%95%84%EC%9E%84%ED%8F%AC%ED%8A%B8-%EA%B2%B0%EC%A0%9C-%EB%AA%A8%EB%93%88-%EB%A7%8C%EB%93%A4%EA%B8%B0
+
+
+spring mvc 크롤링 검색
+
+spring mvc 크롤링 참조
+
+https://riimy.tistory.com/23
+
+https://rinlab.tistory.com/99
+
+https://vmpo.tistory.com/114
+
+https://life-with-coding.tistory.com/389
+
+------------------------------여기꺼로 해보기--------------------------------
+
+https://dev-gorany.tistory.com/11 
+
+https://dev-gorany.tistory.com/search/%ED%81%AC%EB%A1%A4%EB%A7%81
